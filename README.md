@@ -1,8 +1,8 @@
 # Performance banchmark for GO web frameworks
 
-_(made with autocannon)_
+The tests were performed with [autocannon](https://github.com/mcollina/autocannon)
 
-## Fiber
+## [Fiber](https://gofiber.io/)
 
 ```bash
 npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ./file.json http://localhost:3000/json
@@ -27,7 +27,7 @@ Req/Bytes counts sampled once per second.
 
 ```
 
-## Mux
+## [Mux](https://github.com/gorilla/mux)
 
 ```bash
 npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ./Downloads/file.json http://localhost:4001/json
@@ -52,7 +52,7 @@ Req/Bytes counts sampled once per second.
 50k requests in 10.04s, 2.1 GB read
 ```
 
-## Iris
+## [Iris](https://www.iris-go.com/)
 
 ```bash
 npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ./Downloads/file.json http://localhost:4002/json
@@ -75,4 +75,29 @@ Running 10s test @ http://localhost:4002/json
 Req/Bytes counts sampled once per second.
 
 39k requests in 10.04s, 2.31 GB read
+```
+
+## [Echo](https://echo.labstack.com/)
+
+```bash
+npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ../file.json http://localhost:4003/json
+Running 10s test @ http://localhost:4003/json
+125 connections
+
+┌─────────┬──────┬──────┬───────┬────────┬──────────┬──────────┬────────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%    │ Avg      │ Stdev    │ Max    │
+├─────────┼──────┼──────┼───────┼────────┼──────────┼──────────┼────────┤
+│ Latency │ 1 ms │ 6 ms │ 92 ms │ 113 ms │ 22.16 ms │ 26.65 ms │ 261 ms │
+└─────────┴──────┴──────┴───────┴────────┴──────────┴──────────┴────────┘
+┌───────────┬────────┬────────┬────────┬────────┬────────┬─────────┬────────┐
+│ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg    │ Stdev   │ Min    │
+├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
+│ Req/Sec   │ 5091   │ 5091   │ 5535   │ 5619   │ 5510.4 │ 148.15  │ 5091   │
+├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
+│ Bytes/Sec │ 215 MB │ 215 MB │ 234 MB │ 237 MB │ 233 MB │ 6.24 MB │ 215 MB │
+└───────────┴────────┴────────┴────────┴────────┴────────┴─────────┴────────┘
+
+Req/Bytes counts sampled once per second.
+
+55k requests in 10.04s, 2.33 GB read
 ```
