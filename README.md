@@ -5,7 +5,7 @@ The tests were performed with [autocannon](https://github.com/mcollina/autocanno
 ## [Fiber](https://gofiber.io/)
 
 ```bash
-npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ./file.json http://localhost:3000/json
+npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ../file.json http://localhost:3000/json
 Running 10s test @ http://localhost:3000/json
 125 connections
 
@@ -30,7 +30,7 @@ Req/Bytes counts sampled once per second.
 ## [Mux](https://github.com/gorilla/mux)
 
 ```bash
-npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ./Downloads/file.json http://localhost:4001/json
+npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ../file.json http://localhost:4001/json
 Running 10s test @ http://localhost:4001/json
 125 connections
 
@@ -55,7 +55,7 @@ Req/Bytes counts sampled once per second.
 ## [Iris](https://www.iris-go.com/)
 
 ```bash
-npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ./Downloads/file.json http://localhost:4002/json
+npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ../file.json http://localhost:4002/json
 Running 10s test @ http://localhost:4002/json
 125 connections
 
@@ -100,4 +100,29 @@ Running 10s test @ http://localhost:4003/json
 Req/Bytes counts sampled once per second.
 
 55k requests in 10.04s, 2.33 GB read
+```
+
+## [GIN](https://gin-gonic.com/)
+
+```bash
+npx autocannon -c 125 -m POST -H "Content-Type":"application/json" -i ../file.json http://localhost:4004/json
+Running 10s test @ http://localhost:4004/json
+125 connections
+
+┌─────────┬──────┬──────┬────────┬────────┬──────────┬───────┬────────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5%  │ 99%    │ Avg      │ Stdev │ Max    │
+├─────────┼──────┼──────┼────────┼────────┼──────────┼───────┼────────┤
+│ Latency │ 1 ms │ 6 ms │ 112 ms │ 137 ms │ 27.05 ms │ 33 ms │ 285 ms │
+└─────────┴──────┴──────┴────────┴────────┴──────────┴───────┴────────┘
+┌───────────┬────────┬────────┬────────┬────────┬────────┬─────────┬────────┐
+│ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg    │ Stdev   │ Min    │
+├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
+│ Req/Sec   │ 4071   │ 4071   │ 4567   │ 4671   │ 4522.1 │ 154.31  │ 4070   │
+├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
+│ Bytes/Sec │ 172 MB │ 172 MB │ 193 MB │ 197 MB │ 191 MB │ 6.52 MB │ 172 MB │
+└───────────┴────────┴────────┴────────┴────────┴────────┴─────────┴────────┘
+
+Req/Bytes counts sampled once per second.
+
+50k requests in 11.03s, 2.1 GB read
 ```
